@@ -159,7 +159,7 @@
     height: 10px;
     position: absolute;
     bottom: 50px;
-    z-index: 99;
+    z-index: 2;
     left: calc(50% - 30px);
     > ul {
       overflow: hidden;

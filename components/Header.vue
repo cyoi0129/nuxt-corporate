@@ -126,7 +126,7 @@ header {
   width: 100%;
   border-bottom: 1px solid #ccc;
   display: flex;
-  z-index: 2;
+  z-index: 3;
   align-items: center;
   justify-content: space-between;
   .logo-area {
@@ -137,8 +137,11 @@ header {
       justify-content: space-between;
     }
   }
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 920px) {
     nav {
+      .close-menu {
+        display: none;
+      }
       > ul {
         display: flex;
         > li {
@@ -180,11 +183,23 @@ header {
       display: none;
     }
   }
-  @media only screen and (max-width: 899px) {
+  @media only screen and (max-width: 919px) {
     nav {
       display: none;
       &.active {
         display: block;
+        opacity: 0;
+        animation: SlideIn .4s forwards;
+        @keyframes SlideIn {
+          0% {
+            opacity: 0;
+            transform: translateX(64px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
         width: 80%;
         position: fixed;
         top: 0;

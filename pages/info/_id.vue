@@ -15,9 +15,9 @@
       <dt><DateIcon /></dt>
       <dd>{{ post.date }}</dd>
     </dl>
-    <p class="description">{{post.description}}</p>
+    <p class="description">{{ post.description }}</p>
     <template v-if="post.thumbnail !== ''">
-      <img :src="post.thumbnail" :alt="post.title" />
+      <img class="thumbnail" :src="post.thumbnail" :alt="post.title" />
     </template>
     <article id="editorjs"></article>
   </main>
@@ -69,15 +69,12 @@ main.article {
     padding: 4px 8px;
     margin: 0;
   }
+  .thumbnail {
+    max-width: 100%;
+    margin: 8px auto;
+  }
   dl.meta {
-    margin: 0;
     padding: 0 8px;
-    display: flex;
-    align-items: center;
-    justify-items: stretch;
-    dd {
-      margin: 0 16px 0 8px;
-    }
     .tag-list {
       display: flex;
       justify-items: flex-start;
@@ -91,6 +88,32 @@ main.article {
         &:last-child:after {
           content: "";
         }
+      }
+    }
+  }
+  @media only screen and (min-width: 920px) {
+    dl.meta {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-items: stretch;
+      dd {
+        margin: 0 16px 0 8px;
+      }
+    }
+  }
+  @media only screen and (max-width: 919px) {
+    dl.meta {
+      margin: 16px 0 0;
+      dt {
+        float: left;
+        line-height: 36px;
+      }
+      dd {
+        line-height: 36px;
+      }
+      .tag-list {
+        margin: 0;
       }
     }
   }
