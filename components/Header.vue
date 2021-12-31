@@ -1,0 +1,172 @@
+<template>
+  <header>
+    <div class="logo-area">
+      <nuxt-link to="/">
+        <p class="logo">
+          <img
+            src="../static/icon.png"
+            alt="Nuxt Corporate Logo"
+            width="48"
+            height="auto"
+          />
+        </p>
+        <p class="site-name">Nuxt Corporate</p>
+      </nuxt-link>
+    </div>
+    <div class="sp-menu"></div>
+    <nav>
+      <ul>
+        <li v-for="item in menu" :key="item.name">
+          <nuxt-link :to="item.path">{{ item.name }}</nuxt-link>
+          <ul v-if="hasChildren(item)">
+            <li v-for="sub in item.children" :key="sub.name">
+              <nuxt-link :to="sub.path">{{ sub.name }}</nuxt-link>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</template>
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
+  name: "Header",
+  data() {
+    return {
+      show: false,
+      menu: [
+        {
+          name: "About",
+          path: "/about",
+          children: [
+            {
+              name: "Vision",
+              path: "#",
+            },
+            {
+              name: "Message",
+              path: "#",
+            },
+            {
+              name: "History",
+              path: "#",
+            },
+          ],
+        },
+        {
+          name: "Service",
+          path: "/service",
+          children: [
+            {
+              name: "Marketing",
+              path: "#",
+            },
+            {
+              name: "Design",
+              path: "#",
+            },
+            {
+              name: "Development",
+              path: "#",
+            },
+          ],
+        },
+        {
+          name: "Information",
+          path: "/info",
+          children: [
+            {
+              name: "News",
+              path: "#",
+            },
+            {
+              name: "IR",
+              path: "#",
+            },
+          ],
+        },
+        {
+          name: "Recult",
+          path: "/recult",
+        },
+        {
+          name: "Contact",
+          path: "/contact",
+        },
+      ],
+    };
+  },
+  methods: {
+    hasChildren(item: Object) {
+      return item.hasOwnProperty("children");
+    },
+  },
+});
+</script>
+<style lang="scss" scoped>
+header {
+  background: #fff;
+  height: 72px;
+  position: fixed;
+  width: 100%;
+  padding: 0 16px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  z-index: 2;
+  align-items: center;
+  justify-content: space-between;
+  .logo-area {
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  nav {
+    > ul {
+      display: flex;
+
+      > li {
+        width: 120px;
+        text-align: center;
+        position: relative;
+        > ul {
+          display: none;
+          position: absolute;
+          top: 42px;
+          background: rgba(0, 0, 0, 0.6);
+          width: 120px;
+          li {
+            line-height: 24px;
+            padding: 8px 0;
+            a {
+              color: #fff;
+              &:hover {
+                color: #10b981;
+              }
+            }
+          }
+        }
+        &:hover a + ul {
+          display: block;
+        }
+        > a {
+          padding: 8px 8px 10px;
+          display: block;
+          &:hover {
+            border-bottom: 2px solid #10b981;
+            padding-bottom: 8px;
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: 900px) {
+    .sp-menu {
+      display: none;
+    }
+  }
+}
+</style>
