@@ -13,8 +13,13 @@
         <p class="site-name">Nuxt Corporate</p>
       </nuxt-link>
     </div>
-    <div class="sp-menu"></div>
-    <nav>
+    <div class="sp-menu" @click="toggleMenu()">
+      <MenuIcon />
+    </div>
+    <nav :class="{ active: show }">
+      <div class="close-menu" @click="toggleMenu()">
+        <CloseIcon />
+      </div>
       <ul>
         <li v-for="item in menu" :key="item.name">
           <nuxt-link :to="item.path">{{ item.name }}</nuxt-link>
@@ -37,6 +42,10 @@ export default Vue.extend({
     return {
       show: false,
       menu: [
+        {
+          name: "Home",
+          path: "/",
+        },
         {
           name: "About",
           path: "/about",
@@ -102,70 +111,111 @@ export default Vue.extend({
     hasChildren(item: Object) {
       return item.hasOwnProperty("children");
     },
+    toggleMenu() {
+      this.show = !this.show;
+    },
   },
 });
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 header {
   background: #fff;
   height: 72px;
   position: fixed;
+  top: 0;
   width: 100%;
-  padding: 0 16px;
   border-bottom: 1px solid #ccc;
   display: flex;
   z-index: 2;
   align-items: center;
   justify-content: space-between;
   .logo-area {
+    padding-left: 16px;
     a {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
   }
-  nav {
-    > ul {
-      display: flex;
-
-      > li {
-        width: 120px;
-        text-align: center;
-        position: relative;
-        > ul {
-          display: none;
-          position: absolute;
-          top: 42px;
-          background: rgba(0, 0, 0, 0.6);
+  @media only screen and (min-width: 900px) {
+    nav {
+      > ul {
+        display: flex;
+        > li {
           width: 120px;
-          li {
-            line-height: 24px;
-            padding: 8px 0;
-            a {
-              color: #fff;
-              &:hover {
-                color: #10b981;
+          text-align: center;
+          position: relative;
+          > ul {
+            display: none;
+            position: absolute;
+            top: 42px;
+            background: rgba(0, 0, 0, 0.6);
+            width: 120px;
+            li {
+              line-height: 24px;
+              padding: 8px 0;
+              a {
+                color: #fff;
+                &:hover {
+                  color: #10b981;
+                }
               }
             }
           }
-        }
-        &:hover a + ul {
-          display: block;
-        }
-        > a {
-          padding: 8px 8px 10px;
-          display: block;
-          &:hover {
-            border-bottom: 2px solid #10b981;
-            padding-bottom: 8px;
+          &:hover a + ul {
+            display: block;
+          }
+          > a {
+            padding: 8px 8px 10px;
+            display: block;
+            &:hover {
+              border-bottom: 2px solid #10b981;
+              padding-bottom: 8px;
+            }
           }
         }
       }
     }
-  }
-  @media only screen and (min-width: 900px) {
     .sp-menu {
       display: none;
+    }
+  }
+  @media only screen and (max-width: 899px) {
+    nav {
+      display: none;
+      &.active {
+        display: block;
+        width: 80%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 100;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        .close-menu {
+          text-align: right;
+          padding: 16px;
+        }
+        > ul {
+          margin-top: 0;
+          > li {
+            padding: 16px;
+            border-bottom: 1px solid #fff;
+            > ul {
+              display: none;
+            }
+            a {
+              color: #fff;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+    .sp-menu {
+      display: block;
+      padding-right: 16px;
+      width: 24px;
     }
   }
 }

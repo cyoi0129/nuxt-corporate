@@ -1,21 +1,24 @@
 <template>
-  <main>
+  <main class="article">
     <h1>{{ post.title }}</h1>
-    <template v-if="post.thumbnail !== ''">
-        <img :src="post.thumbnail" :alt="post.title" />
-    </template>
-    <dl>
-      <dt>Category</dt>
+    <dl class="meta">
+      <dt><CategoryIcon /></dt>
       <dd>{{ post.category }}</dd>
-      <dt>Tag</dt>
+      <dt><TagIcon /></dt>
       <dd>
-        <ul>
-          <li v-for="(item, index) in post.tag" :key="index">
+        <ul class="tag-list">
+          <li v-for="(item, index) in post.tag" :key="index + 1">
             {{ item }}
           </li>
         </ul>
       </dd>
+      <dt><DateIcon /></dt>
+      <dd>{{ post.date }}</dd>
     </dl>
+    <p class="description">{{post.description}}</p>
+    <template v-if="post.thumbnail !== ''">
+      <img :src="post.thumbnail" :alt="post.title" />
+    </template>
     <article id="editorjs"></article>
   </main>
 </template>
@@ -37,10 +40,10 @@ export default Vue.extend({
         holderId: "editorjs",
         readOnly: true,
         tools: {
-            header: Header,
-            list: List,
-            table: Table,
-            image: ImageTool,
+          header: Header,
+          list: List,
+          table: Table,
+          image: ImageTool,
         },
         data: postData.content,
         // style: EditorJSStyle.StyleInlineTool
@@ -50,8 +53,52 @@ export default Vue.extend({
   },
 });
 </script>
-<style>
-.image-tool__caption {
-    display: none;
+<style lang="scss">
+main.article {
+  max-width: 800px;
+  margin: 0 auto;
+  h1 {
+    padding: 8px;
+    margin: 0;
+    border-bottom: 2px solid #10b981;
+  }
+  .description {
+    font-style: italic;
+    font-size: 80%;
+    color: #777;
+    padding: 4px 8px;
+    margin: 0;
+  }
+  dl.meta {
+    margin: 0;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-items: stretch;
+    dd {
+      margin: 0 16px 0 8px;
+    }
+    .tag-list {
+      display: flex;
+      justify-items: flex-start;
+      align-items: center;
+      li {
+        padding-right: 0;
+        &:after {
+          content: ", ";
+          padding-right: 8px;
+        }
+        &:last-child:after {
+          content: "";
+        }
+      }
+    }
+  }
+  .ce-block__content {
+    max-width: 720px;
+    .image-tool__caption {
+      display: none;
+    }
+  }
 }
 </style>
