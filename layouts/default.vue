@@ -1,15 +1,19 @@
 <template>
   <div>
     <Header />
-    <nuxt />
+    <main>
+      <nuxt />
+    </main>
     <Footer />
   </div>
 </template>
 <style lang="scss">
 main {
-    padding: 96px 16px 48px;
-    &.home-main {
-      padding:72px 0 48px;
-    }
+  padding: 72px 0 48px;
+  .container {
+    max-width: 920px;
+    padding: 8px;
+    margin: 0 auto;
+  }
 }
 </style>

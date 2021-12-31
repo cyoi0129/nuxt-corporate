@@ -1,8 +1,8 @@
 <template>
   <dl>
-    <template v-for="(item, index) in posts">
-      <dt :key="index + 1">{{ item.date }}</dt>
-      <dd :key="index + 1">
+    <template v-for="item in posts">
+      <dt :key="item.date">{{ item.date }}</dt>
+      <dd :key="item.title">
         <nuxt-link :to="'info/' + item.id">{{ item.title }}</nuxt-link>
       </dd>
     </template>

@@ -21,7 +21,7 @@
         <CloseIcon />
       </div>
       <ul>
-        <li v-for="item in menu" :key="item.name">
+        <li v-for="item in menu" :key="item.name" @click="toggleMenu()">
           <nuxt-link :to="item.path">{{ item.name }}</nuxt-link>
           <ul v-if="hasChildren(item)">
             <li v-for="sub in item.children" :key="sub.name">
@@ -52,15 +52,15 @@ export default Vue.extend({
           children: [
             {
               name: "Vision",
-              path: "#",
+              path: "/about",
             },
             {
               name: "Message",
-              path: "#",
+              path: "/about",
             },
             {
               name: "History",
-              path: "#",
+              path: "/about",
             },
           ],
         },
@@ -70,15 +70,15 @@ export default Vue.extend({
           children: [
             {
               name: "Marketing",
-              path: "#",
+              path: "/service",
             },
             {
               name: "Design",
-              path: "#",
+              path: "/service",
             },
             {
               name: "Development",
-              path: "#",
+              path: "/service",
             },
           ],
         },
@@ -88,11 +88,11 @@ export default Vue.extend({
           children: [
             {
               name: "News",
-              path: "#",
+              path: "/info",
             },
             {
               name: "IR",
-              path: "#",
+              path: "/info",
             },
           ],
         },

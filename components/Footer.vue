@@ -23,6 +23,8 @@ export default Vue.extend({
         font-size: 80%;
         color: #555;
         padding: 8px 0;
+        position: absolute;
+        bottom: 0;
         p {
             margin: 0;
         }

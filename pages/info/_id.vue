@@ -1,5 +1,5 @@
 <template>
-  <main class="article">
+  <div class="article">
     <h1>{{ post.title }}</h1>
     <dl class="meta">
       <dt><CategoryIcon /></dt>
@@ -7,7 +7,7 @@
       <dt><TagIcon /></dt>
       <dd>
         <ul class="tag-list">
-          <li v-for="(item, index) in post.tag" :key="index + 1">
+          <li v-for="item in post.tag" :key="item">
             {{ item }}
           </li>
         </ul>
@@ -20,7 +20,7 @@
       <img class="thumbnail" :src="post.thumbnail" :alt="post.title" />
     </template>
     <article id="editorjs"></article>
-  </main>
+  </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
@@ -54,9 +54,9 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss">
-main.article {
+.article {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 16px auto;
   h1 {
     padding: 8px;
     margin: 0;
@@ -83,7 +83,8 @@ main.article {
         padding-right: 0;
         &:after {
           content: ", ";
-          padding-right: 8px;
+          margin-left: -4px;
+          margin-right: 4px;
         }
         &:last-child:after {
           content: "";
@@ -119,6 +120,7 @@ main.article {
   }
   .ce-block__content {
     max-width: 720px;
+    padding: 0 8px;
     .image-tool__caption {
       display: none;
     }
