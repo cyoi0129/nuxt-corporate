@@ -19,35 +19,40 @@
     <template v-if="post.thumbnail !== ''">
       <img class="thumbnail" :src="post.thumbnail" :alt="post.title" />
     </template>
-    <article id="editorjs"></article>
+    <article id="editorjs" v-html="post.article"></article>
   </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
-import EditorJS from "@editorjs/editorjs";
 export default Vue.extend({
   name: "Article",
   computed: {
     post() {
       const id = this.$route.params.id;
       const postData = this.$store.getters.getPost(id);
-      const Header = require("@editorjs/header");
-      const List = require("@editorjs/list");
-      const ImageTool = require("@editorjs/image");
-      const Table = require("@editorjs/table");
-      // const EditorJSStyle = require('editorjs-style');
-      new EditorJS({
-        holderId: "editorjs",
-        readOnly: true,
-        tools: {
-          header: Header,
-          list: List,
-          table: Table,
-          image: ImageTool,
-        },
-        data: postData.content,
-        // style: EditorJSStyle.StyleInlineTool
+      let result: any;
+      postData.content.blocks.forEach((item: any) => {
+        switch (item.type) {
+          case "header":
+            result += `<h3>${item.data.text}</h3>`;
+            break;
+          case "paragraph":
+            result += `<p>${item.data.text}</p>`;
+            break;
+          case "list":
+            result += '<ul>';
+            item.data.items.forEach( (itemTxt: any) => {
+              result += `<li>${itemTxt}</li>`;
+            })
+            result += '</ul>'
+            break;
+          case "image":
+            result += `<p><img src="${item.data.file.url}" alt="${item.data.caption}"></p>`;
+            break;
+          default:
+        }
       });
+      postData.article = result;
       return postData;
     },
   },
@@ -118,11 +123,11 @@ export default Vue.extend({
       }
     }
   }
-  .ce-block__content {
+  #editorjs {
     max-width: 720px;
     padding: 0 8px;
-    .image-tool__caption {
-      display: none;
+    a {
+      text-decoration: underline;
     }
   }
 }

@@ -22,7 +22,7 @@ export default Vue.extend({
         text-align: center;
         font-size: 80%;
         color: #555;
-        padding: 8px 0;
+        padding: 16px 0;
         position: absolute;
         bottom: 0;
         p {
