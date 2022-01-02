@@ -6,21 +6,26 @@
         <h2><span>News</span></h2>
         <List />
       </section>
-      <section class="loop-content">
-        <Parallax />
-        <Block />
-      </section>
-      <section class="loop-content">
-        <Block />
+      <section>
         <Parallax />
       </section>
-      <section class="loop-content">
-        <Parallax />
-        <Block />
+      <section class="flex-content">
+        <article><img src="../static/marketing.jpg" alt="" /></article>
+        <TextBlock />
       </section>
-      <section class="loop-content">
-        <Block />
+      <section>
         <Parallax />
+      </section>
+      <section class="flex-content">
+        <TextBlock />
+        <article><img src="../static/device.jpg" alt="" /></article>
+      </section>
+      <section>
+        <Parallax />
+      </section>
+      <section class="flex-content">
+        <article><img src="../static/analysis.jpg" alt="" /></article>
+        <TextBlock />
       </section>
     </div>
   </div>
@@ -59,9 +64,20 @@ section {
       background: #fff;
     }
   }
-  &.loop-content {
+  img {
+    width: 100%;
+  }
+  &.flex-content {
     @media only screen and (min-width: 920px) {
       display: flex;
+      article {
+        width: 50%;
+      }
+    }
+    @media only screen and (max-width: 919px) {
+      article {
+        width: 100%;
+      }
     }
   }
 }

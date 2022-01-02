@@ -14,7 +14,7 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  name: "Block",
+  name: "TextBlock",
 });
 </script>
 <style lang="scss" scoped>

@@ -115,7 +115,7 @@
       <div class="bottom"></div>
       <div class="left"></div>
       <div class="right">
-        <label for="gossip" class="label">Gossip</label>
+        <label for="others" class="label">Others</label>
       </div>
     </div>
     <div class="cube-13 w-100 cube">
@@ -143,9 +143,9 @@
       <div class="right">
         <input
           type="text"
-          name="gossip"
-          id="gossip"
-          placeholder="How did you hear about us?"
+          name="others"
+          id="others"
+          placeholder="Others"
           class="field"
         />
       </div>
@@ -257,7 +257,7 @@
     </div>
     <div class="cube-28 w-100 cube">
       <div class="front">
-        <label for="gossip" class="label">Gossip</label>
+        <label for="others" class="label">Others</label>
       </div>
       <div class="back"></div>
       <div class="top"></div>
@@ -285,9 +285,9 @@
       <div class="front">
         <input
           type="text"
-          name="gossip"
-          id="gossip"
-          placeholder="How did you hear about us?"
+          name="others"
+          id="others"
+          placeholder="Others"
           class="field"
         />
       </div>
@@ -329,7 +329,7 @@
 .cube-4 .front,
 .cube-30 .front,
 .cube-31 .front {
-  background: #c9472b;
+  background: #00cc00;
 }
 
 .cube-1 .left,
@@ -358,7 +358,7 @@
 .cube-28 .front,
 .cube-29 .right,
 .cube-31 .right {
-  background: #a13921;
+  background: #00bb00;
 }
 
 .cube-3 .left,
@@ -409,7 +409,7 @@
 .cube-32 .left,
 .cube-32 .right,
 .cube-33 .left {
-  background: #7a2716;
+  background: #00aa00;
 }
 
 .cube-5 .left,
@@ -432,7 +432,7 @@
 .cube-32 .back,
 .cube-33 .back,
 .cube-32 .front {
-  background: #661f10;
+  background: #009900;
 }
 
 .cube-4 .left,
@@ -447,7 +447,7 @@
 .cube-12 .right,
 .cube-22 .right,
 .cube-33 .right {
-  background: #60180e;
+  background: #008800;
 }
 
 .cube-1 .top,
@@ -516,7 +516,7 @@
 .cube-32 .bottom,
 .cube-33 .top,
 .cube-33 .bottom {
-  background: #330d05;
+  background: #007700;
 }
 
 .cube-5 .front,
@@ -526,18 +526,18 @@
 .cube-22 .front,
 .cube-24 .front,
 .cube-27 .front {
-  background: #f5a741;
+  background: #006600;
 }
 
 .cube-13 .front,
 .cube-15 .front,
 .cube-23 .front,
 .cube-25 .front {
-  background: #ea9d3d;
+  background: #005500;
 }
 
 .button {
-  background: #ffeb3b;
+  background: #004400;
 }
 
 body {
@@ -575,6 +575,8 @@ body {
 @media only screen and (max-width: 600px) {
   .form {
     padding: 100px 0;
+    margin-left: 32px;
+    position: relative;
   }
 }
 
@@ -617,7 +619,7 @@ body {
   text-transform: uppercase;
   font-weight: inherit;
   cursor: pointer;
-  color: #ff3d00;
+  color: #fff;
 }
 
 .field,
@@ -627,19 +629,25 @@ body {
 .field::placeholder,
 .texarea::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: inherit;
-  opacity: 1;
+  color: #ccc;
+  opacity: 0.5;
+  font-style: italic;
+  font-weight: normal;
   /* Firefox */
 }
 .field:-ms-input-placeholder,
 .texarea:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: inherit;
+  color: #ccc;
+  font-style: italic;
+  font-weight: normal;
 }
 .field::-ms-input-placeholder,
 .texarea::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: inherit;
+  color: #ccc;
+  font-style: italic;
+  font-weight: normal;
 }
 
 .field,
