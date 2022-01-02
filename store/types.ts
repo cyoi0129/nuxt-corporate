@@ -3,18 +3,27 @@ export interface masterItem {
     name: string
 }
 
-export interface postData {
+export interface postBase {
     title: string,
     description: string,
     thumbnail: string,
     date: string,
-    category: number,
-    tag: number[],
     content: {
         time: number,
         blocks: [],
         version: string
     }
+}
+
+export interface postData extends postBase {
+    category: number,
+    tag: number[],
+}
+
+export interface postPageData extends postBase {
+    id: string,
+    category: string,
+    tag: string[],
 }
 
 export interface postItem extends postData {
