@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="image">
-          <img src="../static/slider1.jpg" />
+          <img src="../static/slide1.jpg" />
         </div>
       </div>
       <div class="slider">
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="image">
-          <img src="../static/slider2.jpg" />
+          <img src="../static/slide2.jpg" />
         </div>
       </div>
       <div class="slider">
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="image">
-          <img src="../static/slider3.jpg" />
+          <img src="../static/slide3.jpg" />
         </div>
       </div>
       <div class="slider">
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="image">
-          <img src="../static/slider4.jpg" />
+          <img src="../static/slide4.jpg" />
         </div>
       </div>
     </div>
@@ -105,7 +105,12 @@
         width: 100%;
         height: 100%;
         img {
-          width: 100%;
+          @media only screen and (min-width: 920px) {
+            width: 100%;
+          }
+          @media only screen and (max-width: 919px) {
+            height: 100%;
+          }
         }
       }
       /* Legend */

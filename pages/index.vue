@@ -6,13 +6,31 @@
         <h2><span>News</span></h2>
         <List />
       </section>
+      <section class="loop-content">
+        <Parallax />
+        <Block />
+      </section>
+      <section class="loop-content">
+        <Block />
+        <Parallax />
+      </section>
+      <section class="loop-content">
+        <Parallax />
+        <Block />
+      </section>
+      <section class="loop-content">
+        <Block />
+        <Parallax />
+      </section>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import Parallax from "~/components/Parallax.vue";
 export default Vue.extend({
+  components: { Parallax },
   name: "IndexPage",
   async asyncData({ store }) {
     await store.dispatch("fetchData");
@@ -39,6 +57,11 @@ section {
       position: relative;
       padding: 0 1em;
       background: #fff;
+    }
+  }
+  &.loop-content {
+    @media only screen and (min-width: 920px) {
+      display: flex;
     }
   }
 }
