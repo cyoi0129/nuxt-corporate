@@ -4,9 +4,9 @@ import { masterItem, postItem, postData, StoreData, postPageData } from './types
 const convertPosts = (posts: any) => {
     let result = [];
     for (const [key, PostData] of Object.entries(posts)) {
-        let tempPostData = PostData;
+        let tempPostData: postData = PostData as postData;
         const tempPostID = { id: key }
-        const tempPostItem = Object.assign(tempPostID, tempPostData);
+        const tempPostItem: postItem = Object.assign(tempPostID, tempPostData);
         result.push(tempPostItem);
     }
     return result;
@@ -34,7 +34,7 @@ export const state: StoreData = {
 }
 
 export const mutations = {
-    mutateData(state: any, payload: any) {
+    mutateData(state: StoreData, payload: StoreData) {
         state.posts = convertPosts(payload.posts);
         state.masters = payload.masters;
     },
@@ -53,9 +53,9 @@ export const getters = {
         return (id: string) => {
             const target = state.posts.find((post: postItem) => post.id === id);
             let result: postPageData;
-            if (target) {
+            if (target && state.masters.categories !== [] && state.masters.tags !== []) {
                 const categoryStr = findMasterNameByID(target.category, state.masters.categories);
-                const tagStrList = target.tag.map((item: any) => findMasterNameByID(item, state.masters.tags));
+                const tagStrList = target.tag.map((item: number) => findMasterNameByID(item, state.masters.tags));
                 result = {
                     id: target.id,
                     title: target.title,
@@ -64,7 +64,8 @@ export const getters = {
                     date: target.date,
                     category: categoryStr,
                     tag: tagStrList,
-                    content: target.content
+                    content: target.content,
+                    html: ''
                 };
             } else {
                 result = {
@@ -80,7 +81,8 @@ export const getters = {
                         version: '',
                         blocks: []
 
-                    }
+                    },
+                    html:''
                 };
             }
             return result;

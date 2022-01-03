@@ -19,40 +19,41 @@
     <template v-if="post.thumbnail !== ''">
       <img class="thumbnail" :src="post.thumbnail" :alt="post.title" />
     </template>
-    <article id="editorjs" v-html="post.article"></article>
+    <article id="editorjs" v-html="post.html"></article>
   </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
+import { postPageData, ElementItem, headerItem, paragraphItem, listItem, imageItem } from "~/store/types";
 export default Vue.extend({
   name: "Article",
   computed: {
     post() {
-      const id = this.$route.params.id;
-      const postData = this.$store.getters.getPost(id);
-      let result: any;
-      postData.content.blocks.forEach((item: any) => {
+      const id: string = this.$route.params.id;
+      const postData: postPageData = this.$store.getters.getPost(id);
+      let result: string = '';
+      postData.content.blocks.forEach((item: ElementItem) => {
         switch (item.type) {
           case "header":
-            result += `<h3>${item.data.text}</h3>`;
+            result += `<h3>${(item.data as headerItem).text}</h3>`;
             break;
           case "paragraph":
-            result += `<p>${item.data.text}</p>`;
+            result += `<p>${(item.data as paragraphItem).text}</p>`;
             break;
           case "list":
             result += '<ul>';
-            item.data.items.forEach( (itemTxt: any) => {
+            (item.data as listItem).items.forEach( (itemTxt: string) => {
               result += `<li>${itemTxt}</li>`;
             })
             result += '</ul>'
             break;
           case "image":
-            result += `<p><img src="${item.data.file.url}" alt="${item.data.caption}"></p>`;
+            result += `<p><img src="${(item.data as imageItem).file.url}" alt="${(item.data as imageItem).caption}"></p>`;
             break;
           default:
         }
       });
-      postData.article = result;
+      postData.html = result;
       return postData;
     },
   },

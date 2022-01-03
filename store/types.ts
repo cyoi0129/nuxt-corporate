@@ -24,6 +24,7 @@ export interface postPageData extends postBase {
     id: string,
     category: string,
     tag: string[],
+    html: string
 }
 
 export interface postItem extends postData {
@@ -39,7 +40,37 @@ export interface RenderTree {
 export interface StoreData {
     posts: postItem[] | [],
     masters: {
-        tags: masterItem | [],
-        categories: masterItem | []
+        tags: masterItem[] | [],
+        categories: masterItem[] | []
     }
 }
+
+export interface headerItem {
+    text: string,
+    level: number,
+  }
+  
+  export interface paragraphItem {
+    text: string
+  }
+  
+  export interface listItem {
+    items: string[],
+    style: string
+  }
+  
+  export interface imageItem {
+    caption: string,
+    file: {
+      url: string
+    },
+    stretched: boolean,
+    withBackground: boolean,
+    withBorder: boolean
+  }
+  
+  export interface ElementItem {
+    data: headerItem | paragraphItem | listItem | imageItem,
+    id: string,
+    type: string
+  }
